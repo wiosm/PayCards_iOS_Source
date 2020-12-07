@@ -129,7 +129,7 @@ using namespace std;
 
 @property (nonatomic, strong) UILabel *recognizedDateLabel;
 
-@property (nonatomic, strong) UIButton *copyrightButton;
+//@property (nonatomic, strong) UIButton *copyrightButton;
 
 @property (nonatomic, assign) PayCardsRecognizerResultMode resultMode;
 
@@ -466,11 +466,11 @@ using namespace std;
     [_view addConstraintWithItem:self.labelsHolderView attribute:NSLayoutAttributeBottom toItem:self.frameImageView];
     [_view addConstraintWithItem:self.labelsHolderView attribute:NSLayoutAttributeLeft toItem:self.frameImageView];
     
-    [_view addSubview:self.copyrightButton];
+//    [_view addSubview:self.copyrightButton];
     
-    [_view addConstraintWithItem:self.copyrightButton attribute:NSLayoutAttributeLeft toItem:_view attribute:NSLayoutAttributeLeft constant:8];
-    [_view addConstraintWithItem:self.copyrightButton attribute:NSLayoutAttributeBottom toItem:_view attribute:NSLayoutAttributeBottom constant:-4];
-    
+//    [_view addConstraintWithItem:self.copyrightButton attribute:NSLayoutAttributeLeft toItem:_view attribute:NSLayoutAttributeLeft constant:8];
+//    [_view addConstraintWithItem:self.copyrightButton attribute:NSLayoutAttributeBottom toItem:_view attribute:NSLayoutAttributeBottom constant:-4];
+//
     return _view;
 }
 
@@ -587,23 +587,23 @@ using namespace std;
     
     return _recognizedNameLabel;
 }
-
--(UIButton *)copyrightButton {
-    if (_copyrightButton) {
-        return _copyrightButton;
-    }
-    
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10], NSForegroundColorAttributeName: [UIColor colorWithWhite:1 alpha:0.5], NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
-    
-    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Powered by pay.cards", "") attributes:attributes];
-    
-    _copyrightButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    _copyrightButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [_copyrightButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
-    [_copyrightButton addTarget:self action:@selector(tapCopyright) forControlEvents:UIControlEventTouchUpInside];
-    
-    return _copyrightButton;
-}
+//
+//-(UIButton *)copyrightButton {
+//    if (_copyrightButton) {
+//        return _copyrightButton;
+//    }
+//
+//    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10], NSForegroundColorAttributeName: [UIColor colorWithWhite:1 alpha:0.5], NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
+//
+//    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Powered by pay.cards", "") attributes:attributes];
+//
+//    _copyrightButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//    _copyrightButton.translatesAutoresizingMaskIntoConstraints = NO;
+//    [_copyrightButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
+//    [_copyrightButton addTarget:self action:@selector(tapCopyright) forControlEvents:UIControlEventTouchUpInside];
+//
+//    return _copyrightButton;
+//}
 
 - (void)tapCopyright {
     if (@available(iOS 10, *)) {

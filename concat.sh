@@ -15,7 +15,6 @@ fi
 # Build the framework for device and for simulator
 # (using all needed architectures).
 xcodebuild -target "${FRAMEWORK_DEVICE}" -configuration "${CONFIGURATION}" -arch arm64 -arch armv7 only_active_arch=no BITCODE_GENERATION_MODE=bitcode defines_module=yes -sdk "iphoneos"
-xcodebuild -target "${FRAMEWORK_SIMULATOR}" -configuration "${CONFIGURATION}" -arch x86_64 -arch i386 only_active_arch=no BITCODE_GENERATION_MODE=bitcode defines_module=yes -sdk "iphonesimulator"
 
 # Remove .framework file from previous run if exists.
 if [ -d "${SRCROOT}/${FRAMEWORK_DEVICE}.framework" ]; then
@@ -29,9 +28,6 @@ cp -r "${SRCROOT}/build/${CONFIGURATION}-iphoneos/${FRAMEWORK_DEVICE}.framework"
 # a new version created by merging the device and simulator
 # frameworks' executables with lipo.
 lipo -create -output "${SRCROOT}/${FRAMEWORK_DEVICE}.framework/${FRAMEWORK_DEVICE}" "${SRCROOT}/build/${CONFIGURATION}-iphoneos/${FRAMEWORK_DEVICE}.framework/${FRAMEWORK_DEVICE}" "${SRCROOT}/build/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_SIMULATOR}.framework/${FRAMEWORK_SIMULATOR}"
-
-# Fix simulator rpath
-install_name_tool -id "@rpath/${FRAMEWORK_DEVICE}.framework/${FRAMEWORK_DEVICE}" "${SRCROOT}/${FRAMEWORK_DEVICE}.framework/${FRAMEWORK_DEVICE}"
 
 # Delete the most recent build.
 if [ -d "${SRCROOT}/build" ]; then
